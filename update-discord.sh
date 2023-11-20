@@ -1,11 +1,8 @@
 #!/bin/bash
 
-FALSE=0
-TRUE=1
-
 VERSION="0.2"
-FLAG_OPEN=$FALSE
-FLAG_VEN=$FALSE
+FLAG_OPEN="FALSE"
+FLAG_VEN="FALSE"
 
 while getopts 'voe?' OPTION; do
     case "$OPTION" in
@@ -14,10 +11,10 @@ while getopts 'voe?' OPTION; do
             exit 1
             ;;
         o)
-            FLAG_OPEN=$TRUE
+            FLAG_OPEN="TRUE"
             ;;
         e)
-            FLAG_VEN=$TRUE
+            FLAG_VEN="TRUE"
             ;;
         ?)
             echo "Usage: $(basename $0) [-v | [o &| e]]"
@@ -35,14 +32,14 @@ cd ~/Downloads/; sudo apt install ./discord.deb
 echo "[Cleaning up downloads directory]"
 rm ./discord.deb
 
-if [ $FALSE -ne $FLAG_VEN ]; then
+if [ "FALSE" != $FLAG_VEN ]; then
     echo "[Opening Vencord UI...]"
     sh -c "$(curl -sS https://raw.githubusercontent.com/Vendicated/VencordInstaller/main/install.sh)"
 else
     echo "[Ignoring Vencord]"
 fi
 
-if [ $FALSE -ne $FLAG_OPEN ]; then
+if [ "FALSE" != $FLAG_OPEN ]; then
     echo "[Opening Discord...]"
     discord
 else
