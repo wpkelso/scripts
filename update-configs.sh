@@ -30,7 +30,7 @@ if [ "SET" == $OP_FLAG ]; then
     echo "Beginning operation: SET..."
 
     echo "[Alacritty] Copying from git dir to local"
-    cp ~/Documents/configs/alacritty/alacritty.yml ~/.config/alacritty/
+    cp -r ~/Documents/configs/alacritty/* ~/.config/alacritty/
 
     echo "[NVim] Copying from git dir to local"
     cp ~/Documents/configs/nvim/init.lua ~/.config/nvim/
@@ -43,12 +43,13 @@ if [ "SET" == $OP_FLAG ]; then
     cp ~/Documents/configs/zsh/.zshrc ~/
 
     echo "Set all configs in repo, operation finished"
+    exit 1
 
-else if [ "BACKUP" == $OP_FLAG ]; then
+elif [ "BACKUP" == $OP_FLAG ]; then
     echo "Beginning operation: BACKUP..."
 
     echo "[Alacritty] Copying from local dir to git"
-    cp ~/.config/alacritty/alacritty.yml ~/Documents/configs/alacritty/
+    cp -r ~/.config/alacritty/* ~/Documents/configs/alacritty/
 
     echo "[NVim] Copying from git dir to local"
     cp ~/.config/nvim/init.lua ~/Documents/configs/nvim/init.lua
@@ -60,9 +61,5 @@ else if [ "BACKUP" == $OP_FLAG ]; then
     cp ~/.zshrc ~/Documents/configs/zsh/
 
     echo "Set all configs in repo, operation finished"
-
-
-else
-    echo "Flag error in script, exiting..."
     exit 1
 fi
