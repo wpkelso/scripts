@@ -51,13 +51,13 @@ elif [ "BACKUP" == $OP_FLAG ]; then
     echo "[Alacritty] Copying from local dir to git"
     cp -r ~/.config/alacritty/* ~/Documents/configs/alacritty/
 
-    echo "[NVim] Copying from git dir to local"
+    echo "[NVim] Copying from local dir to git"
     cp ~/.config/nvim/init.lua ~/Documents/configs/nvim/init.lua
 
-    echo "[TMux] Copying from git dir to local"
+    echo "[TMux] Copying from local dir to git"
     cp ~/.tmux.conf ~/Documents/configs/tmux/
 
-    echo "[zsh] Copying from git dir to local"
+    echo "[zsh] Copying from local dir to git"
     cp ~/.zshrc ~/Documents/configs/zsh/
 
     echo "Set all configs in repo, operation finished"
