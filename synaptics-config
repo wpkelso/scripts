@@ -1,4 +1,5 @@
 #!/bin/bash
+#Place in ~/.local/bin/
 
 synclient MinSpeed=0.9
 synclient MaxSpeed=1.5
