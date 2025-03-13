@@ -1,14 +1,18 @@
 #!/bin/bash
 
 VERSION="0.2"
+FLAG_DL="FALSE"
 FLAG_OPEN="FALSE"
 FLAG_VEN="FALSE"
 
-while getopts 'voe?' OPTION; do
+while getopts 'vdoe?' OPTION; do
     case "$OPTION" in
         v)
             echo "Debian Discord/Vencord update script version $VERSION"
             exit 1
+            ;;
+        d)
+            FLAG_DL="TRUE"
             ;;
         o)
             FLAG_OPEN="TRUE"
@@ -23,14 +27,18 @@ while getopts 'voe?' OPTION; do
     esac
 done
 
-echo "[Getting discord update package...]"
-wget https://discordapp.com/api/download?platform=linux -O ~/Downloads/discord.deb
+if [ "FALSE" != $FLAG_DL ]; then
+    echo "[Getting discord update package...]"
+    wget https://discordapp.com/api/download?platform=linux -O ~/Downloads/discord.deb
 
-echo "[Installing update package...]"
-cd ~/Downloads/; sudo apt install ./discord.deb
+    echo "[Installing update package...]"
+    cd ~/Downloads/; sudo apt install ./discord.deb
 
-echo "[Cleaning up downloads directory]"
-rm ./discord.deb
+    echo "[Cleaning up downloads directory]"
+    rm ./discord.deb
+else
+    echo "[Skipping downloading new package]"
+fi
 
 if [ "FALSE" != $FLAG_VEN ]; then
     echo "[Opening Vencord UI...]"

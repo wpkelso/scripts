@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# This script assumes that the git/backup directory is ~/Documents/configs
-# and follows a similar directory hierarchy as wpkelso/configs
+# This script assumes that the git/backup directory is ~/Documents/dotfiles
+# and follows a similar directory hierarchy as wpkelso/dotfiles
 
 VERSION="0.1"
 OP_FLAG="BACKUP"
@@ -30,17 +30,23 @@ if [ "SET" == $OP_FLAG ]; then
     echo "Beginning operation: SET..."
 
     echo "[Alacritty] Copying from git dir to local"
-    cp -r ~/Documents/configs/alacritty/* ~/.config/alacritty/
+    mkdir ~/.config/alacritty
+    cp -r ~/dotfiles/alacritty/* ~/.config/alacritty/
+
+    echo "[Ghostty] Copying from git dir to local"
+    mkdir ~/.config/ghostty
+    cp -r ~/dotfiles/ghostty/* ~/.config/ghostty/
 
     echo "[NVim] Copying from git dir to local"
-    cp ~/Documents/configs/nvim/init.lua ~/.config/nvim/
+    mkdir ~/.config/nvim
+    cp ~/dotfiles/nvim/init.lua ~/.config/nvim/
 
     echo "[TMux] Copying from git dir to local"
-    cp ~/Documents/configs/tmux/.tmux.conf ~/
+    cp ~/dotfiles/tmux/.tmux.conf ~/
 
     echo "[zsh] Copying from git dir to local"
     echo "!!! Note: oh-my-zsh should be installed for this config to work"
-    cp ~/Documents/configs/zsh/.zshrc ~/
+    cp ~/dotfiles/zsh/.zshrc ~/
 
     echo "Set all configs in repo, operation finished"
     exit 1
@@ -49,16 +55,19 @@ elif [ "BACKUP" == $OP_FLAG ]; then
     echo "Beginning operation: BACKUP..."
 
     echo "[Alacritty] Copying from local dir to git"
-    cp -r ~/.config/alacritty/* ~/Documents/configs/alacritty/
+    cp -r ~/.config/alacritty/* ~/dotfiles/alacritty/
+
+    echo "[Ghostty] Copying from local dir to git"
+    cp -r ~/.config/ghostty/* ~/dotfiles/ghostty/
 
     echo "[NVim] Copying from local dir to git"
-    cp ~/.config/nvim/init.lua ~/Documents/configs/nvim/init.lua
+    cp ~/.config/nvim/init.lua ~/dotfiles/nvim/init.lua
 
     echo "[TMux] Copying from local dir to git"
-    cp ~/.tmux.conf ~/Documents/configs/tmux/
+    cp ~/.tmux.conf ~/dotfiles/tmux/
 
     echo "[zsh] Copying from local dir to git"
-    cp ~/.zshrc ~/Documents/configs/zsh/
+    cp ~/.zshrc ~/dotfiles/zsh/
 
     echo "Set all configs in repo, operation finished"
     exit 1
